@@ -1,10 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { ReactNode, FC } from "react";
 
-// ROUTER
 import { usePathname } from "next/navigation";
 
-// TYPES
 interface ILayoutProps {
   animate: boolean;
   children: ReactNode;

@@ -3,15 +3,14 @@
 import React from "react";
 import { useState } from "react";
 
-import Cart from "@/components/Cart";
+import Navbar from "./Components/Navbar";
+import Hero from "./Components/Hero";
+import CTA from "./Components/CTA";
+import Cart from "./Components/Cart";
 
-import Navbar from "./_containers/home/navbar";
-import Hero from "./_containers/home/hero";
-import CTA from "./_containers/home/cta";
 
 const HomePage = () => {
   var [cart, setCart] = useState(false);
-
  
   return (
     <div className="overflow-x-hidden">
