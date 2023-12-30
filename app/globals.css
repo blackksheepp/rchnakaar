@@ -109,3 +109,7 @@ body {
 .slick-slide div {
     outline: none;
 }
+
+.box-shadow {
+    box-shadow: 4px 4px rgb(70, 70, 70);
+}
