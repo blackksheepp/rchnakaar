@@ -1,5 +1,5 @@
 import React from "react";
-import SpinImage from "@/utils/components/SpinImage";
+import SpinImage from "@/app/Components/SpinImage";
 
 const Hero = () => {
   return (

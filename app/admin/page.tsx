@@ -21,7 +21,7 @@ import {
   delItem,
   renameItem,
 } from "@/utils/vercel/kv";
-import withAuth from "@/utils/components/WithAuth";
+import withAuth from "./Components/WithAuth";
 import { FitTexture } from "../Components/TextureOverlay";
 import { saveImage } from "@/utils/vercel/blob";
 

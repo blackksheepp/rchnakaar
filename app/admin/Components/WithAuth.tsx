@@ -83,9 +83,9 @@ const withAuth = (Component: NextComponentType) => {
       <div className="w-full h-screen flex items-center justify-center">
         <div className="shadow-[4px_4px_0px_0px_rgba(70,70,70)] md:shadow-[5px_5px_0px_0px_rgba(70,70,70)] lg:shadow-[6px_6px_0px_0px_rgba(70,70,70)] w-admw h-admh border-2 md:border-3 lg:border-4 border-accent mx-auto inset-x-0 flex flex-col items-center justify-center gap-3 md:gap-4 lg:gap-4 mb-admp ">
           <p className=" text-accent font-retro text-adminlogin mx-auto inset-x-0 max-w-max">
-            Incorrect Password.
+            Enter the Password.
           </p>
-          <div className="bg-accent shadow-[5px_5px_0px_0px_rgba(70,70,70)] w-pwdw h-pwdh flex flex-row justify-between items-center">
+          <div className="bg-accent admin-login w-pwdw h-pwdh flex flex-row justify-between items-center">
             <input
               type={showPassword ? "text" : "password"}
               placeholder="password"
