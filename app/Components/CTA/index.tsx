@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import ImageSlider from "@/utils/components/ImageSlider";
+import ImageSlider from "@/app/Components/ImageSlider";
 
 const CTA = () => {
   return (
