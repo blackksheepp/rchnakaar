@@ -18,36 +18,36 @@ export const Item: React.FC<ItemElement> = ({
 }) => {
   return (
     <div
-      className={`text-accent font-retro flex flex-row items-center justify-between border-accent border-b-[3px] h-[80px] px-4 ${
+      className={`text-accent font-retro flex flex-row items-center justify-between border-accent border-b-[3px] h-itmh px-itmg2 ${
         isDragging ? "border-[3px] bg-black" : ""
       }`}
     >
       <div className="flex flex-row justify-between items-baseline w-full">
-        <div className="flex flex-row gap-2 items-center">
+        <div className="flex flex-row gap-itmg items-center">
           <Image
             src="/img/drag.png"
             alt="drag"
             width={0}
             height={0}
             sizes="100vw"
-            className="w-auto h-[15px] cursor-pointer"
+            className="w-auto h-drgb cursor-pointer"
             {...dragHandle}
           />
 
           <Image
             src={item?.image}
-            alt="itemimg"
+            alt=" "
             width={0}
             height={0}
             sizes="100vw"
-            className="w-[50px] h-auto cursor-pointer"
+            className="w-itmim h-auto cursor-pointer"
             onClick={() => {
               setZoom(item?.image);
             }}
           />
-          <div className="flex flex-col gap-1">
-            <p className="text-[14px]">{item?.name}</p>
-            <p className="text-[11px] text-gray-400">{item?.description}</p>
+          <div className="flex flex-col gap-1 lg:gap-0">
+            <p className="text-itmn">{item?.name}</p>
+            <p className="text-itmd text-gray-400">{item?.description}</p>
           </div>
         </div>
         <div className="flex flex-row gap-3">
@@ -57,7 +57,7 @@ export const Item: React.FC<ItemElement> = ({
             width={0}
             height={0}
             sizes="100vw"
-            className="w-auto h-[18px] cursor-pointer"
+            className="w-auto h-edtb cursor-pointer"
             onClick={() => {
               rename(item?.name);
             }}
@@ -68,7 +68,7 @@ export const Item: React.FC<ItemElement> = ({
             width={0}
             height={0}
             sizes="100vw"
-            className="w-[18px] h-auto cursor-pointer"
+            className="w-edtb h-auto cursor-pointer"
             onClick={() => {
               if (item) delItem(item);
               refresh();
