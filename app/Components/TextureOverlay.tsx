@@ -1,9 +1,9 @@
 import React from "react";
 
-export const TextureOverlay = ({opacity}: {opacity: number}) => {
+export const TextureOverlay = ({opacity}: {opacity: string}) => {
   return (
     <div
-      className={`fixed top-0 left-0 w-screen h-screen pointer-events-none opacity-[${opacity}%]`}
+      className={`fixed top-0 left-0 w-screen h-screen pointer-events-none opacity-[${opacity}0%]`}
       style={{
         backgroundImage: `url('/img/grunge.jpg')`,
         backgroundSize: "cover",
@@ -16,7 +16,7 @@ export const TextureOverlay = ({opacity}: {opacity: number}) => {
 export const FitTexture = () => {
   return (
     <div
-      className={`absolute z-20 w-full h-full pointer-events-none`}
+      className={`absolute z-20 w-full h-full pointer-events-none opacity-[50%]`}
       style={{
         backgroundImage: `url('/img/grunge.jpg')`,
         backgroundSize: "cover",

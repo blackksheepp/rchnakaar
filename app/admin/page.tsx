@@ -159,12 +159,12 @@ const Admin = () => {
             Manage Store
           </p>
 
-          <div className="shadow-[6px_6px_0px_0px_rgba(70,70,70)] w-[80%] h-[80%] border-accent border-4 mb-10">
+          <div className="shadow-[6px_6px_0px_0px_rgba(70,70,70)] w-[80%] min-h-[80%] overflow-y-auto border-accent border-4 mb-10">
             {collectionName ? (
               <div className="font-retro text-accent text-2xl py-3 border-b-[3px] flex flex-row justify-between pl-5 pr-7">
                 <p>{collectionName}</p>
                 <p
-                  className="text-sm flex items-center pt-1"
+                  className="text-sm flex items-center pt-1 cursor-pointer"
                   onClick={() => {
                     setCollectionName("");
                   }}
@@ -220,7 +220,7 @@ const Admin = () => {
             )}
             {/* Create Collection Button */}
             <button
-              className="btn w-auto h-auto font-retro text-black flex flex-row gap-1 px-4 py-3 mx-auto mt-4 items-center justify-center"
+              className="btn w-auto h-auto font-retro text-black flex flex-row gap-1 px-4 py-3 mx-auto my-6 items-center justify-center"
               onClick={() => {
                 setShowForm(!showForm);
               }}
@@ -242,7 +242,7 @@ const Admin = () => {
 
         {showForm ? (
           <div className="absolute w-full h-screen z-30 grid place-items-center">
-            <div className="absolute w-[80%] overflow-y-visible border-accent border-4 shadow-[6px_6px_0px_0px_rgba(70,70,70)]">
+            <div className="absolute w-[80%] max-w-[400px] bg-black overflow-y-visible border-accent border-4 shadow-[6px_6px_0px_0px_rgba(70,70,70)]">
               <FitTexture />
               <div
                 className="w-full max-w-max ml-auto mr-2 mt-3 mb-5 cursor-pointer"
@@ -316,7 +316,7 @@ const Admin = () => {
               width={0}
               height={0}
               sizes="100vw"
-              className="w-[250px] h-auto cursor-pointer"
+              className="w-itmz h-auto cursor-pointer"
               onClick={() => {}}
             />
           </div>

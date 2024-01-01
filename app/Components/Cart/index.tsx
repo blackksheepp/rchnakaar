@@ -10,7 +10,7 @@ const Cart = ({
 }) => {
   return (
     <PageTransitionLayout animate={showCart}>
-      <TextureOverlay opacity={30} />
+      <TextureOverlay opacity={"3"} />
       <div className="w-full h-screen flex items-center justify-between">
         <div className="z-10 w-full flex flex-col items-center justify-between gap-5 mx-auto inset-x-0 max-w-max">
           <p className=" text-accent font-retro dropshadow text-lg">
