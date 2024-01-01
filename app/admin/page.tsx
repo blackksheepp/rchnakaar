@@ -242,7 +242,7 @@ const Admin = () => {
 
         {showForm ? (
           <div className="absolute w-full h-screen z-30 grid place-items-center">
-            <div className="absolute w-[80%] max-w-[400px] overflow-y-visible border-accent border-4 shadow-[6px_6px_0px_0px_rgba(70,70,70)]">
+            <div className="absolute w-[80%] max-w-[400px] bg-black overflow-y-visible border-accent border-4 shadow-[6px_6px_0px_0px_rgba(70,70,70)]">
               <FitTexture />
               <div
                 className="w-full max-w-max ml-auto mr-2 mt-3 mb-5 cursor-pointer"

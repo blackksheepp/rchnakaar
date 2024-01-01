@@ -37,7 +37,7 @@ export const ItemForm: FC<ItemFormElement> = ({
           onChange={(event) => {
             if (event.target.files) setImageFile(event.target.files[0]);
           }}
-          className="file:bg-accent file:outline-none file:text-[10px] file:font-retro  bg-black border border-accent shadow-[3px_3px_0px_0px_rgba(70,70,70)] text-accent font-retro text-inpt outline-none px-1 py-1"
+          className="file:bg-accent file:outline-none file:text-[10px] file:font-retro  bg-black border border-accent shadow-[3px_3px_0px_0px_rgba(70,70,70)] text-accent font-retro text-[8px] md:text-[12px] lg:text-[16px] outline-none px-1 py-1"
         />
       </div>
       <input

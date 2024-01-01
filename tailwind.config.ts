@@ -24,7 +24,8 @@ const config: Config = {
         objt: "clamp(1rem, calc(0.8533rem + 0.6522vw), 1.375rem);",
         itmn: "clamp(0.875rem, calc(0.6793rem + 0.8696vw), 1.375rem); ",
         itmd: "clamp(0.6875rem, calc(0.5652rem + 0.5435vw), 1rem); ",
-        inpt: "clamp(0.8125rem, 0.7391rem + 0.3261vw, 1rem);",
+        inpt: "clamp(0.8125rem, calc(0.7391rem + 0.3261vw), 1rem);",
+        inpf: "clamp(0.5rem, calc(0.3043rem + 0.8696vw), 1rem);",
       },
       spacing: {
         s1: "clamp(2rem, calc(-0.1429rem + 10.7143vw), 5rem)",
