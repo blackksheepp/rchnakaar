@@ -20,7 +20,7 @@ export const CollectionForm: FC<CollectionFormElement> = ({ onSubmit, objectName
         onChange={(event) => {
           setObjectName(event.target.value);
         }}
-        className="bg-accent placeholder:text-gray-500 shadow-[3px_3px_0px_0px_rgba(70,70,70)] text-black font-retro text-[15px] outline-none px-2 py-1"
+        className="bg-accent placeholder:text-gray-500 shadow-[3px_3px_0px_0px_rgba(70,70,70)] text-black font-retro text-inpt outline-none px-2 py-1"
         required // Added the required attribute
       />
       <button

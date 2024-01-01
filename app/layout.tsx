@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-black">
         {/* <div className="grunge" /> */}
-        <TextureOverlay opacity={50} />
+      <div className="opacity-[90%]"><TextureOverlay /></div>
         <main>{children}</main>
       </body>
     </html>
