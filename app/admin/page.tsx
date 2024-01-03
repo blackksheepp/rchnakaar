@@ -2,17 +2,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-import {
-  getCollections,
-  reOrderCollection,
-  createCollection,
-  renameCollection,
-  createItem,
-  getItems,
-  renameItem,
-} from "@/utils/vercel/kv";
-import { saveImage } from "@/utils/vercel/blob";
-
 import withAuth from "./Components/WithAuth";
 import { FitTexture } from "../Components/TextureOverlay";
 
@@ -24,11 +13,22 @@ import { CollectionForm } from "./Components/Collection/Form";
 import { ItemForm } from "./Components/Item/Form";
 import { DNDList } from "./Components/DNDList";
 import { DropResult, Draggable } from "react-beautiful-dnd";
+import { CollectionType, ItemType } from "@/database/collections";
+import {
+  CreateCollection,
+  CreateItem,
+  GetCollections,
+  GetItems,
+  ReOrder,
+  RenameCollection,
+  RenameItem,
+  SaveImage,
+} from "@/app/utils/db";
 
 const Admin = () => {
   const [showForm, setShowForm] = useState<boolean>(false);
   const [objectName, setObjectName] = useState<string>("");
-  const [objectDescription, setObjectDescription] = useState<string>("");
+  const [objectDetails, setObjectDetails] = useState<string>("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [objectImage, setObjectImage] = useState<string>("");
   const [zoom, setZoom] = useState<boolean>(false);
@@ -44,6 +44,32 @@ const Admin = () => {
   const [collectionName, setCollectionName] = useState("");
   const showCollections = () => {
     return collectionName == "";
+  };
+
+  const saveImage = async () => {
+    const filename = `${objectName}.${imageFile?.name.slice(
+      ((imageFile?.name.lastIndexOf(".") - 1) >>> 0) + 2
+    )}`;
+    if (imageFile) {
+      const reader = new FileReader();
+
+      reader.onload = async () => {
+        const arrayBuffer = reader.result as ArrayBuffer;
+        const fileBuffer = Buffer.from(arrayBuffer);
+        const url = await SaveImage(
+          filename,
+          JSON.stringify(fileBuffer),
+          fileBuffer.length
+        );
+        await renderObjects(
+          await CreateItem(objectName, objectDetails, url, collectionName!)
+        );
+      };
+
+      reader.readAsArrayBuffer(imageFile);
+    }
+
+    return true;
   };
 
   const loadItems = (collection: string) => {
@@ -65,14 +91,14 @@ const Admin = () => {
 
     setObjectElement(reorderedObjects);
     await renderObjects(
-      await reOrderCollection(
-        collectionName,
+      await ReOrder(
         reorderedObjects.map((object) => {
           if ((object as CollectionElement).collection) {
             return (object as CollectionElement).collection;
           }
           return (object as ItemElement).item;
-        })
+        }),
+        collectionName
       )
     );
   };
@@ -80,27 +106,25 @@ const Admin = () => {
   const renderObjects = async (show: boolean | undefined) => {
     if (!show) return;
 
-    const objects =
-      collectionName == ""
-        ? await getCollections()
-        : await getItems(collectionName!);
-    setHaveObjects(objects ? objects.length > 0 : false);
+    let objects: (CollectionType | ItemType)[] | null;
+    collectionName == ""
+      ? await GetCollections()
+      : await GetItems(collectionName!);
 
-    var objectElements: ObjectElement[] | null = null;
+    let objectElements;
     if (showCollections()) {
-      objectElements =
-        (objects?.map((c, i) => ({
-          key: i.toString(),
-          collection: c,
-        })) as CollectionElement[]) || null;
+      objects = await GetCollections();
+      objectElements = objects?.map((o, i) => {
+        return { key: i.toString(), collection: o } as CollectionElement;
+      });
     } else {
-      objectElements =
-        (objects?.map((c, i) => ({
-          key: i.toString(),
-          item: c,
-        })) as ItemElement[]) || null;
+      objects = await GetItems(collectionName!);
+      objectElements = objects?.map((o, i) => {
+        return { key: i.toString(), item: o } as ItemElement;
+      });
     }
 
+    setHaveObjects(objects ? objects.length > 0 : false);
     if (objectElements) {
       setObjectElement(objectElements);
     }
@@ -108,25 +132,18 @@ const Admin = () => {
 
   const createNewObject = async () => {
     await renderObjects(
-      showCollections()
-        ? await createCollection(objectName)
-        : await createItem({
-            name: objectName,
-            description: objectDescription,
-            image: await saveImage(objectName, imageFile!),
-            collection: collectionName!,
-          })
+      showCollections() ? await CreateCollection(objectName) : await saveImage()
     );
     setObjectName("");
-    setObjectDescription("");
+    setObjectDetails("");
   };
 
   const renameOldObject = async () => {
     var newObjectName = objectName;
 
     const k = showCollections()
-      ? await renameCollection(oldObjectName, newObjectName)
-      : await renameItem(collectionName, oldObjectName, newObjectName);
+      ? await RenameCollection(oldObjectName, newObjectName)
+      : await RenameItem(collectionName, oldObjectName, newObjectName);
 
     console.log(k);
     await renderObjects(k);
@@ -199,6 +216,7 @@ const Admin = () => {
                           <Item
                             key={item.key}
                             item={(item as ItemElement).item}
+                            collectionName={collectionName}
                             refresh={refresh}
                             rename={rename}
                             isDragging={snapshot.isDragging}
@@ -291,8 +309,8 @@ const Admin = () => {
                   setImageFile={setImageFile}
                   objectName={objectName}
                   setObjectName={setObjectName}
-                  objectDescription={objectDescription}
-                  setObjectDescription={setObjectDescription}
+                  objectDetails={objectDetails}
+                  setObjectDetails={setObjectDetails}
                   Rename={Rename}
                 />
               )}{" "}

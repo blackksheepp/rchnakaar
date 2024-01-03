@@ -1,15 +1,16 @@
 import { ObjectElement } from "../Common";
-import { item } from "@/utils/vercel/kv";
 import Image from "next/image";
-import { delItem } from "@/utils/vercel/kv";
-
+import { ItemType } from "@/database/collections";
+import { DelItem } from "@/app/utils/db";
 export interface ItemElement extends ObjectElement {
-  item: item;
+  item: ItemType;
+  collectionName: string;
   setZoom: (imgUrl: string) => void;
 }
 
 export const Item: React.FC<ItemElement> = ({
   item,
+  collectionName,
   refresh,
   rename,
   isDragging,
@@ -46,8 +47,8 @@ export const Item: React.FC<ItemElement> = ({
             }}
           />
           <div className="flex flex-col gap-1 lg:gap-0">
-            <p className="text-itmn">{item?.name}</p>
-            <p className="text-itmd text-gray-400">{item?.description}</p>
+            <p className="text-itmn">{item?.title}</p>
+            <p className="text-itmd text-gray-400">{item?.details}</p>
           </div>
         </div>
         <div className="flex flex-row gap-3">
@@ -59,7 +60,7 @@ export const Item: React.FC<ItemElement> = ({
             sizes="100vw"
             className="w-auto h-edtb cursor-pointer"
             onClick={() => {
-              rename(item?.name);
+              rename(item?.title);
             }}
           />
           <Image
@@ -70,7 +71,7 @@ export const Item: React.FC<ItemElement> = ({
             sizes="100vw"
             className="w-edtb h-auto cursor-pointer"
             onClick={() => {
-              if (item) delItem(item);
+              if (item) DelItem(collectionName, item.title);
               refresh();
             }}
           />

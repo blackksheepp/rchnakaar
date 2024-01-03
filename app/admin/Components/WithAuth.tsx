@@ -3,7 +3,7 @@ import { NextComponentType } from "next";
 import { ComponentProps } from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { verifyPassword } from "@/app/actions";
+import { verifyPassword } from "@/app/utils/actions";
 
 const withAuth = (Component: NextComponentType) => {
   const Auth = (props: ComponentProps<any>) => {

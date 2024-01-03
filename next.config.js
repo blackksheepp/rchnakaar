@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
   env: {
-    KV_REST_API_URL: process.env.KV_REST_API_URL,
-    KV_REST_API_TOKEN: process.env.KV_REST_API_TOKEN,
-    BLOB_READ_WRITE_TOKEN: process.env.BLOB_READ_WRITE_TOKEN,
+    DATABASE_URL: process.env.DATABASE_URL,
+    TEBI_ACCESS_KEY: process.env.TEBI_ACCESS_KEY,
+    TEBI_ACCESS_SECRET: process.env.TEBI_ACCESS_SECRET,
   },
+  reactStrictMode: false,
   images: {
     remotePatterns: [
       {
@@ -13,6 +13,11 @@ const nextConfig = {
         hostname: "**",
       },
     ],
+  },
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "10mb",
+    },
   },
 };
 
