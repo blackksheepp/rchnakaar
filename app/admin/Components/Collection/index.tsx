@@ -68,7 +68,9 @@ export const Collection: React.FC<CollectionElement> = ({
         </div>
       </div>
       <p className="box-border w-10 h-full max-h-max border-l-[3px] border-accent grid place-items-center pl-3">
+
         {collection?.items.length}
+
       </p>
     </div>
   );

@@ -47,8 +47,10 @@ export const Item: React.FC<ItemElement> = ({
             }}
           />
           <div className="flex flex-col gap-1 lg:gap-0">
+
             <p className="text-itmn">{item?.title}</p>
             <p className="text-itmd text-gray-400">{item?.details}</p>
+
           </div>
         </div>
         <div className="flex flex-row gap-3">

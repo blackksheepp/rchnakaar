@@ -1,5 +1,6 @@
 import React from "react";
 
+
 export const BackgroundTexture = () => {
   return (
     <div
@@ -17,6 +18,7 @@ export const TextureOverlay = () => {
   return (
     <div
       className={`fixed top-0 left-0 w-screen h-screen pointer-events-none opacity-[30%]`}
+
       style={{
         backgroundImage: `url('/img/grunge.jpg')`,
         backgroundSize: "cover",
