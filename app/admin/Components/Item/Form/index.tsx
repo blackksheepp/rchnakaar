@@ -4,8 +4,8 @@ interface ItemFormElement {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void;
   objectName: string;
   setObjectName: React.Dispatch<React.SetStateAction<string>>;
-  objectDescription: string;
-  setObjectDescription: React.Dispatch<React.SetStateAction<string>>;
+  objectDetails: string;
+  setObjectDetails: React.Dispatch<React.SetStateAction<string>>;
   setImageFile: React.Dispatch<React.SetStateAction<File | null>>;
   Rename: boolean;
 }
@@ -14,8 +14,8 @@ export const ItemForm: FC<ItemFormElement> = ({
   onSubmit,
   objectName,
   setImageFile,
-  objectDescription,
-  setObjectDescription,
+  objectDetails,
+  setObjectDetails,
   setObjectName,
   Rename,
 }) => {
@@ -52,10 +52,10 @@ export const ItemForm: FC<ItemFormElement> = ({
       />
       <input
         type="text"
-        placeholder="item description"
-        value={objectDescription}
+        placeholder="item details"
+        value={objectDetails}
         onChange={(event) => {
-          setObjectDescription(event.target.value);
+          setObjectDetails(event.target.value);
         }}
         className={`bg-accent placeholder:text-gray-500 shadow-[3px_3px_0px_0px_rgba(70,70,70)] text-black font-retro text-inpt outline-none px-2 py-1 ${
           Rename ? "hidden" : "vissible"

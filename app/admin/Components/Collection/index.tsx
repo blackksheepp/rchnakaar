@@ -1,9 +1,9 @@
+import { CollectionType } from "@/database/collections";
+import { DelCollection } from "@/app/utils/db";
 import { ObjectElement } from "../Common";
-import { collection } from "@/utils/vercel/kv";
 import Image from "next/image";
-import { delCollection } from "@/utils/vercel/kv";
 export interface CollectionElement extends ObjectElement {
-  collection: collection;
+  collection: CollectionType;
   loadItems: (collection: string) => void;
 }
 
@@ -61,14 +61,16 @@ export const Collection: React.FC<CollectionElement> = ({
             sizes="100vw"
             className="w-edtb h-auto cursor-pointer"
             onClick={() => {
-              delCollection(collection);
+              DelCollection(collection.name);
               refresh();
             }}
           />
         </div>
       </div>
       <p className="box-border w-10 h-full max-h-max border-l-[3px] border-accent grid place-items-center pl-3">
-        {collection?.items}
+
+        {collection?.items.length}
+
       </p>
     </div>
   );

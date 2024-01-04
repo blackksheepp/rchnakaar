@@ -1,9 +1,24 @@
 import React from "react";
 
-export const TextureOverlay = ({opacity}: {opacity: string}) => {
+
+export const BackgroundTexture = () => {
   return (
     <div
-      className={`fixed top-0 left-0 w-screen h-screen pointer-events-none opacity-[${opacity}0%]`}
+      className={`fixed top-0 left-0 w-screen h-screen pointer-events-none opacity-[50%]`}
+      style={{
+        backgroundImage: `url('/img/grunge.jpg')`,
+        backgroundSize: "cover",
+        mixBlendMode: "screen",
+      }}
+    />
+  );
+};
+
+export const TextureOverlay = () => {
+  return (
+    <div
+      className={`fixed top-0 left-0 w-screen h-screen pointer-events-none opacity-[30%]`}
+
       style={{
         backgroundImage: `url('/img/grunge.jpg')`,
         backgroundSize: "cover",

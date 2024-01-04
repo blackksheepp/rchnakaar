@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { TextureOverlay } from "./Components/TextureOverlay";
+import { BackgroundTexture } from "./Components/TextureOverlay";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,8 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-black">
-        {/* <div className="grunge" /> */}
-        <TextureOverlay opacity={"5"} />
+
+        <BackgroundTexture />
+
         <main>{children}</main>
       </body>
     </html>
